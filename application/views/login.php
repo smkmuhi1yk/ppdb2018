@@ -55,6 +55,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
+
           <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
         <!-- /.col -->
@@ -69,6 +70,7 @@
      
       SMK Muhammadiyah 1 Yogyakarta
     </div>
+    <a class="btn btn-info" href="<?php echo base_url('index.php/smas_controller/board');?>">Board</a>
     <!-- /.social-auth-links -->
   </div>
   <!-- /.login-box-body -->

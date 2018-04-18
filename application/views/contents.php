@@ -16,7 +16,7 @@
   <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+        <span class="info-box-icon bg-red"><i class="fa glyphicon glyphicon-user"></i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">Siswa Baru</span>
@@ -30,7 +30,7 @@
 
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+        <span class="info-box-icon bg-green"><i class="fa fab fa-android"></i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">RPL</span>
@@ -44,7 +44,7 @@
 
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+        <span class="info-box-icon bg-red"><i class="fa fas fa-laptop"></i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">TKJ</span>
@@ -58,7 +58,7 @@
 
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+        <span class="info-box-icon bg-blue"><i class="fa fas fa-camera"></i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">MM</span>
@@ -72,7 +72,7 @@
 
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+        <span class="info-box-icon bg-yellow"><i class="fa fas fa-calculator"></i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">AK</span>
@@ -86,7 +86,7 @@
 
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+        <span class="info-box-icon bg-aqua"><i class="fa fas fa-balance-scale"></i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">KMS</span>
@@ -100,7 +100,7 @@
 
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+        <span class="info-box-icon bg-aqua"><i class="fa fas fa-balance-scale"></i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">PIP</span>
@@ -114,7 +114,7 @@
 
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+        <span class="info-box-icon bg-aqua"><i class="fa fas fa-balance-scale"></i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">KIP</span>
@@ -126,6 +126,64 @@
       <!-- /.info-box -->
     </div>
 
+
+<div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="fa fas fa-balance-scale"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">KPS</span>
+          <span class="info-box-number"><?php echo COUNT($countkps);?>
+        </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-orange"><i class="fa fas fa-chevron-up"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">NEM Tertinggi</span>
+          <span class="info-box-number"><?php 
+                                               foreach ($maxnem as $nem) {
+                                                echo $nem['nem'];
+                                                echo "<br>";
+                                                 echo $nem['nm_siswa'];
+                                               }   
+
+                                             ?>
+        </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-orange"><i class="fa fas fa-chevron-down"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">NEM Terendah</span>
+          <span class="info-box-number"><?php 
+                                               foreach ($minnem as $min_nem) {
+                                                echo $min_nem['nem'];
+                                                echo "<br>";
+                                                echo $min_nem['nm_siswa'];
+                                                 
+                                               }   
+
+                                             ?>
+        </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
     <!-- /.col -->
     
     <!-- /.col -->

@@ -6,6 +6,24 @@ class Smas_controller extends CI_Controller {
 	parent::__construct();
   $this->load->library('template');
 }
+  public function board()
+  {
+   // $data['tahun'] = $this->m_tahun->get_tahun()->result_array();
+
+    $data['countsiswa'] = $this->m_dashboard->count_siswa()->result_array();
+    $data['countrpl'] = $this->m_dashboard->count_rpl()->result_array();
+    $data['counttkj'] = $this->m_dashboard->count_tkj()->result_array();
+    $data['countmm'] = $this->m_dashboard->count_mm()->result_array();
+    $data['countak'] = $this->m_dashboard->count_ak()->result_array();
+    $data['countkms'] = $this->m_dashboard->count_kms()->result_array();
+    $data['countpip'] = $this->m_dashboard->count_pip()->result_array();
+    $data['countkip'] = $this->m_dashboard->count_kip()->result_array();
+     $data['countkps'] = $this->m_dashboard->count_kps()->result_array();
+     $data['maxnem'] = $this->m_dashboard->max_nem()->result_array();
+      $data['minnem'] = $this->m_dashboard->min_nem()->result_array();
+
+    $this->load->view('board', $data);
+  }
 	public function index()
 	{
     $data['tahun'] = $this->m_tahun->get_tahun()->result_array();
@@ -89,11 +107,13 @@ class Smas_controller extends CI_Controller {
     $data['countkms'] = $this->m_dashboard->count_kms()->result_array();
     $data['countpip'] = $this->m_dashboard->count_pip()->result_array();
     $data['countkip'] = $this->m_dashboard->count_kip()->result_array();
+     $data['countkps'] = $this->m_dashboard->count_kps()->result_array();
+     $data['maxnem'] = $this->m_dashboard->max_nem()->result_array();
+      $data['minnem'] = $this->m_dashboard->min_nem()->result_array();
    // $data['disposisi'] = $this->m_dashboard->count_disposisi($id_tahun)->result_array();
     $this->template->load('index','contents',$data);
   }
 
-   
 
   public function chpassword()
   {

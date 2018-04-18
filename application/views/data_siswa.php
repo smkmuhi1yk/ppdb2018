@@ -46,6 +46,7 @@
                  <th>JK</th>
                  <th>Jurusan</th>
                  <th>Keterangan</th>
+                 <th>NEM</th>
                  <th>Biaya</th>
                 
               
@@ -68,6 +69,7 @@
                   <td><?php echo $u['jk_siswa'];?></td>
                   <td><?php echo $u['jurusan'];?></td>
                   <td><?php echo $u['keterangan'];?></td>
+                  <td><?php echo $u['nem'];?></td>
                   <td><?php echo $u['biaya'];?></td>
                   
                   
@@ -76,7 +78,7 @@
                
                  
                        <a href="<?php echo base_urL('index.php/smas_controller/editsiswa/').$u['no_daftar'];?>"><span class="label label-primary" aria-hidden="true"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</span></a>
-                    
+                    <br>
                        <a onclick="javascript: return confirm('Are you sure you want to delete this data ?')" href="<?php echo base_urL('index.php/smas_controller/delsiswa/').$u['no_daftar'];?>"><span class="label label-danger" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</span></a>
 
                     
@@ -95,6 +97,7 @@
                  <th>JK</th>
                  <th>Jurusan</th>
                  <th>Keterangan</th>
+                 <th>NEM</th>
                  <th>Biaya</th>
            
                  <th>Action</th>
