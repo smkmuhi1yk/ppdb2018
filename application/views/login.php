@@ -23,6 +23,32 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+<style type="text/css">
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background-color: #fff;
+    }
+    .preloader .loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      font: 14px arial;
+    }
+    </style>
+<div class="preloader">
+      <div class="loading">
+        <img src="<?php echo base_urL('assets/image/pacman.gif');?>" width="80">
+        <p>Sabarrrrrr</p>
+      </div>
+    </div>
+
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -92,5 +118,12 @@
     });
   });
 </script>
+
+<script>
+    $(document).ready(function(){
+      $(".preloader").fadeOut();
+    })
+    </script>
 </body>
 </html>
+ 

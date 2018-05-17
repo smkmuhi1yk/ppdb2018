@@ -5,6 +5,9 @@ class Smas_controller extends CI_Controller {
   public function __construct(){
 	parent::__construct();
   $this->load->library('template');
+  $this->load->library('datatables');
+  $this->load->model('m_wilayah');
+  $this->load->model('m_smp');
 }
   public function board()
   {
@@ -26,6 +29,7 @@ class Smas_controller extends CI_Controller {
   }
 	public function index()
 	{
+    
     $data['tahun'] = $this->m_tahun->get_tahun()->result_array();
 		$this->load->view('login',$data);
 	}
@@ -151,12 +155,16 @@ class Smas_controller extends CI_Controller {
   public function siswa()
   {
     $data['siswa'] = $this->m_siswa->get_user()->result_array();
+    $data2['provinsi']=$this->m_wilayah->get_all_provinsi();
+    $data2['provinsi_smp']=$this->m_wilayah->get_all_provinsi_smp();
+
+    //$data2['provinsi_smp']=$this->m_wilayah->get_all_provinsi_smp();
     //$data['total_biaya']=$this->m_poin->get_total_biaya()->result();
     //$data['selek'] = $this->m_siswa->selek_poin()->result_array();
    
    // $data['jabatan'] = $this->m_jabatan->get_jabatan()->result_array();
     //$data['level'] = $this->m_level->get_level()->result_array();
-    $this->template->load('index','siswa');
+    $this->template->load('index','siswa', $data2);
   }
 
   public function guru()
@@ -352,9 +360,16 @@ public function delkelas()
     $data['alamat'] = $this->input->post('alamat');
     $data['rt'] = $this->input->post('rt');
     $data['rw'] = $this->input->post('rw');
-    $data['nm_desa'] = $this->input->post('nm_desa');
-    $data['kecamatan'] = $this->input->post('kecamatan');
-    $data['kota'] = $this->input->post('kota');
+    
+    $data['id_provinsi_siswa'] = $this->input->post('id_provinsi_siswa');
+    $data['id_kabupaten_siswa'] = $this->input->post('id_kabupaten_siswa');
+    $data['id_kecamatan_siswa'] = $this->input->post('id_kecamatan_siswa');
+    $data['id_desa_siswa'] = $this->input->post('id_desa_siswa');
+
+    //$data['nm_desa'] = $this->input->post('nm_desa');
+    //$data['kecamatan'] = $this->input->post('kecamatan');
+    //$data['kota'] = $this->input->post('kota');
+
     $data['kode_pos'] = $this->input->post('kode_pos');
     $data['tinggi_badan'] = $this->input->post('tinggi_badan');
     $data['berat_badan'] = $this->input->post('berat_badan');
@@ -368,10 +383,10 @@ public function delkelas()
     $data['asal_smp'] = $this->input->post('asal_smp');
     $data['npsn_smp'] = $this->input->post('npsn_smp');
     $data['alamat_smp'] = $this->input->post('alamat_smp');
-    $data['desa_smp'] = $this->input->post('desa_smp');
-    $data['kecamatan_smp'] = $this->input->post('kecamatan_smp');
-    $data['kab_smp'] = $this->input->post('kab_smp');
-    $data['provinsi_smp'] = $this->input->post('provinsi_smp');
+    $data['id_provinsi_smp'] = $this->input->post('id_provinsi_smp');
+    $data['id_kabupaten_smp'] = $this->input->post('id_kabupaten_smp');
+    $data['id_kecamatan_smp'] = $this->input->post('id_kecamatan_smp');
+    $data['id_desa_smp'] = $this->input->post('id_desa_smp');
     $data['keterangan'] = $this->input->post('keterangan');
     $data['no_kps_kms'] = $this->input->post('no_kps_kms');
     $data['jurusan'] = $this->input->post('jurusan');
@@ -405,7 +420,10 @@ public function delkelas()
   public function editsiswa()
   {
     $id = $this->uri->segment(3);
-   $data['siswa'] = $this->m_siswa->get_user($id)->row();
+  
+   $data['provinsi']=$this->m_wilayah->get_all_provinsi();
+   $data['provinsi_smp']=$this->m_wilayah->get_all_provinsi_smp();
+   $data['joinsiswa'] = $this->m_siswa->get_join_user($id)->row();
     $this->template->load('index','edit_siswa',$data);
   }
 
@@ -447,9 +465,16 @@ public function delkelas()
     $data['alamat'] = $this->input->post('alamat');
     $data['rt'] = $this->input->post('rt');
     $data['rw'] = $this->input->post('rw');
-    $data['nm_desa'] = $this->input->post('nm_desa');
-    $data['kecamatan'] = $this->input->post('kecamatan');
-    $data['kota'] = $this->input->post('kota');
+
+     $data['id_provinsi_siswa'] = $this->input->post('id_provinsi_siswa');
+    $data['id_kabupaten_siswa'] = $this->input->post('id_kabupaten_siswa');
+    $data['id_kecamatan_siswa'] = $this->input->post('id_kecamatan_siswa');
+    $data['id_desa_siswa'] = $this->input->post('id_desa_siswa');
+
+   // $data['nm_desa'] = $this->input->post('nm_desa');
+   // $data['kecamatan'] = $this->input->post('kecamatan');
+   // $data['kota'] = $this->input->post('kota');
+
     $data['kode_pos'] = $this->input->post('kode_pos');
     $data['tinggi_badan'] = $this->input->post('tinggi_badan');
     $data['berat_badan'] = $this->input->post('berat_badan');
@@ -463,10 +488,10 @@ public function delkelas()
     $data['asal_smp'] = $this->input->post('asal_smp');
     $data['npsn_smp'] = $this->input->post('npsn_smp');
     $data['alamat_smp'] = $this->input->post('alamat_smp');
-    $data['desa_smp'] = $this->input->post('desa_smp');
-    $data['kecamatan_smp'] = $this->input->post('kecamatan_smp');
-    $data['kab_smp'] = $this->input->post('kab_smp');
-    $data['provinsi_smp'] = $this->input->post('provinsi_smp');
+     $data['id_provinsi_smp'] = $this->input->post('id_provinsi_smp');
+    $data['id_kabupaten_smp'] = $this->input->post('id_kabupaten_smp');
+    $data['id_kecamatan_smp'] = $this->input->post('id_kecamatan_smp');
+    $data['id_desa_smp'] = $this->input->post('id_desa_smp');
     $data['keterangan'] = $this->input->post('keterangan');
     $data['no_kps_kms'] = $this->input->post('no_kps_kms');
     $data['jurusan'] = $this->input->post('jurusan');
@@ -476,10 +501,10 @@ public function delkelas()
     $hasil = $this->m_siswa->update_siswa($id,$data);
     if ($hasil == 0){
       $this->session->set_flashdata('alert','Update Data User berhasil');
-      redirect('smas_controller/siswa');
+      redirect('smas_controller/dt_siswa');
     } else {
       $this->session->set_flashdata('alert','Update Data User Gagal');
-      redirect('smas_controller/siswa');
+      redirect('smas_controller/edit_siswa');
     }
   }
 
@@ -499,13 +524,169 @@ public function export_siswa()
     //$data['calonpelanggar'] = $this->m_calon_pelanggar->get_user()->result_array();
     //$data['guru'] = $this->m_guru->get_user()->result_array();
     // $data['kelas'] = $this->m_kelas->get_kelas()->result_array();
-   $data['siswa'] = $this->m_siswa->get_user()->result_array();
+   $data['joinsiswa'] = $this->m_siswa->get_join_user()->result_array();
     //$data['poin_pelanggaran'] = $this->m_pelanggar->poin_pelanggaran()->result_array();
     //$data['level'] = $this->m_level->get_level()->result_array();
     $this->template->load('index','export_siswa',$data);
   }
 
+ public function addcek()
+  {
+    $id = $this->uri->segment(3);
+   $data['siswa'] = $this->m_siswa->get_user($id)->row();
 
+    $this->template->load('index','add_ceklist',$data);
+  }
+
+public function addceklist()
+  {
+    
+    $data['no_daftar'] = $this->input->post('no_daftar');
+    $data['nama_cek'] = $this->input->post('nama_cek');
+    $data['jurusan'] = $this->input->post('jurusan');
+    $data['skhun_asli'] = $this->input->post('skhun_asli');
+    $data['fc_skhun'] = $this->input->post('fc_skhun');
+    $data['fc_ijazah'] = $this->input->post('fc_ijazah');
+    $data['fc_akta'] = $this->input->post('fc_akta');
+    $data['fc_c1'] = $this->input->post('fc_c1');
+    $data['photo'] = $this->input->post('photo');
+    $data['skl_asli'] = $this->input->post('skl_asli');
+    $data['fc_kms_kps'] = $this->input->post('fc_kms_kps');
+    $data['data_pribadi'] = $this->input->post('data_pribadi');
+    $data['fc_raport'] = $this->input->post('fc_raport');
+    $data['fc_sertifikat'] = $this->input->post('fc_sertifikat');
+    $data['keterangan'] = $this->input->post('keterangan');
+
+    $hasil = $this->m_ceklist->add_ceklist($data);
+    if ($hasil == 0){
+      $this->session->set_flashdata('alert','Input Data User berhasil');
+      redirect('smas_controller/addcek');
+    } else {
+      $this->session->set_flashdata('alert','Input Data User Gagal');
+      redirect('smas_controller/addcek');
+    }
+  }
+
+public function dt_ceklist()
+  {
+    //$data['calonpelanggar'] = $this->m_calon_pelanggar->get_user()->result_array();
+    //$data['guru'] = $this->m_guru->get_user()->result_array();
+    // $data['kelas'] = $this->m_kelas->get_kelas()->result_array();
+   $data['ceklist'] = $this->m_ceklist->get_user()->result_array();
+    //$data['poin_pelanggaran'] = $this->m_pelanggar->poin_pelanggaran()->result_array();
+    //$data['level'] = $this->m_level->get_level()->result_array();
+    $this->template->load('index','data_ceklist',$data);
+  }
+
+   public function editceklist()
+  {
+    $id = $this->uri->segment(3);
+    //$data['ceklist'] = $this->m_ceklist->get_user()->result_array();
+    $data['ceklist'] = $this->m_ceklist->get_user($id)->row();
+    $this->template->load('index','edit_ceklist',$data);
+  }
+
+  public function updateceklist()
+  {
+    $id  = $this->input->post('id_ceklist');
+
+    
+   
+    $data['nama_cek']   = $this->input->post('nama_cek');
+    $data['jurusan']   = $this->input->post('jurusan');
+    $data['skhun_asli'] = $this->input->post('skhun_asli');
+    $data['fc_skhun'] = $this->input->post('fc_skhun');
+    $data['fc_ijazah'] = $this->input->post('fc_ijazah');
+    $data['fc_akta'] = $this->input->post('fc_akta');
+    $data['fc_c1'] = $this->input->post('fc_c1');
+    $data['photo'] = $this->input->post('photo');
+    $data['skl_asli'] = $this->input->post('skl_asli');
+    $data['fc_kms_kps'] = $this->input->post('fc_kms_kps');
+    $data['data_pribadi'] = $this->input->post('data_pribadi');
+    $data['fc_raport'] = $this->input->post('fc_raport');
+    $data['fc_sertifikat'] = $this->input->post('fc_sertifikat');
+    $data['keterangan'] = $this->input->post('keterangan');
+    $hasil = $this->m_ceklist->update_ceklist($id,$data);
+    if ($hasil == 0){
+      $this->session->set_flashdata('alert','Update Data User berhasil');
+      redirect('smas_controller/dt_ceklist');
+    } else {
+      $this->session->set_flashdata('alert','Update Data User Gagal');
+      redirect('smas_controller/ceklist');
+    }
+  }
+
+  public function delceklist()
+  {
+    $id = $this->uri->segment(3);
+    $hasil = $this->m_ceklist->del_ceklist($id);
+    if ($hasil == 0){
+      $this->session->set_flashdata('alert','Hapus Data User berhasil');
+      redirect('smas_controller/dt_ceklist');
+    } else {
+      $this->session->set_flashdata('alert','Hapus Data User Gagal');
+      redirect('smas_controller/calonpelanggar');
+    }
+  }
+
+ public function daftar_sekolah()
+  {
+    
+    $this->template->load('index' ,'daftar_sekolah');
+  }
+
+public function addsmp()
+  {
+    
+    
+    $data['nama_sekolah'] = $this->input->post('nama_sekolah');
+  
+
+    $hasil = $this->m_smp->add_smp($data);
+    if ($hasil == 0){
+      $this->session->set_flashdata('alert','Input Data User berhasil');
+      redirect('smas_controller/daftar_sekolah');
+    } else {
+      $this->session->set_flashdata('alert','Input Data User Gagal');
+      redirect('smas_controller/daftar_sekolah');
+    }
+  }
+
+ public function editsmp()
+  {
+    $id = $this->uri->segment(3);
+    //$data['ceklist'] = $this->m_ceklist->get_user()->result_array();
+    $data['daftar_sekolah'] = $this->m_smp->get_user($id)->row();
+    $this->template->load('index','edit_sekolah',$data);
+  }
+
+public function updatesmp()
+  {
+    $id  = $this->input->post('id_sekolah');
+
+    $data['nama_sekolah'] = $this->input->post('nama_sekolah');
+    $hasil = $this->m_smp->update_sekolah($id,$data);
+    if ($hasil == 0){
+      $this->session->set_flashdata('alert','Update Data User berhasil');
+      redirect('smas_controller/daftar_sekolah');
+    } else {
+      $this->session->set_flashdata('alert','Update Data User Gagal');
+      redirect('smas_controller/daftar_sekolah');
+    }
+  }
+
+  public function delsmp()
+  {
+    $id = $this->uri->segment(3);
+    $hasil = $this->m_smp->del_smp($id);
+    if ($hasil == 0){
+      $this->session->set_flashdata('alert','Hapus Data User berhasil');
+      redirect('smas_controller/daftar_sekolah');
+    } else {
+      $this->session->set_flashdata('alert','Hapus Data User Gagal');
+      redirect('smas_controller/daftar_sekolah');
+    }
+  }
 
   public function tahun()
   {
@@ -562,5 +743,63 @@ public function export_siswa()
     }
   }
 
+  //Ambil data provinsi
+function add_ajax_kab($id_prov){
+      $query = $this->db->get_where('wilayah_kabupaten',array('provinsi_id'=>$id_prov));
+      $data = "<option value=''>- Select Kabupaten -</option>";
+      foreach ($query->result() as $value) {
+          $data .= "<option value='".$value->id."'>".$value->nama_kabupaten."</option>";
+      }
+      echo $data;
+  }
   
+  function add_ajax_kec($id_kab){
+      $query = $this->db->get_where('wilayah_kecamatan',array('kabupaten_id'=>$id_kab));
+      $data = "<option value=''> - Pilih Kecamatan - </option>";
+      foreach ($query->result() as $value) {
+          $data .= "<option value='".$value->id."'>".$value->nama_kecamatan."</option>";
+      }
+      echo $data;
+  }
+  
+  function add_ajax_des($id_kec){
+      $query = $this->db->get_where('wilayah_desa',array('kecamatan_id'=>$id_kec));
+      $data = "<option value=''> - Pilih Desa - </option>";
+      foreach ($query->result() as $value) {
+          $data .= "<option value='".$value->id."'>".$value->nama_desa."</option>";
+      }
+      echo $data;
+  }
+  
+
+//Ambil data smp
+function add_ajax_kab_smp($id_prov){
+      $query = $this->db->get_where('wilayah_kabupaten_smp',array('provinsi_id'=>$id_prov));
+      $data = "<option value=''>- Select Kabupaten -</option>";
+      foreach ($query->result() as $value) {
+          $data .= "<option value='".$value->id."'>".$value->nama_kabupaten_smp."</option>";
+      }
+      echo $data;
+  }
+  
+  function add_ajax_kec_smp($id_kab){
+      $query = $this->db->get_where('wilayah_kecamatan_smp',array('kabupaten_id'=>$id_kab));
+      $data = "<option value=''> - Pilih Kecamatan - </option>";
+      foreach ($query->result() as $value) {
+          $data .= "<option value='".$value->id."'>".$value->nama_kecamatan_smp."</option>";
+      }
+      echo $data;
+  }
+  
+  function add_ajax_des_smp($id_kec){
+      $query = $this->db->get_where('wilayah_desa_smp',array('kecamatan_id'=>$id_kec));
+      $data = "<option value=''> - Pilih Desa - </option>";
+      foreach ($query->result() as $value) {
+          $data .= "<option value='".$value->id."'>".$value->nama_desa_smp."</option>";
+      }
+      echo $data;
+  }
+
+
+
 }

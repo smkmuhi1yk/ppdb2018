@@ -162,6 +162,10 @@
   <script src="<?php echo base_urL('assets/plugins/datatables/jquery.dataTables.min.js');?>"></script>
   <script src="<?php echo base_urL('assets/plugins/datatables/dataTables.bootstrap.min.js');?>"></script>
   <!-- SlimScroll -->
+<script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+<script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
+
+
   <script src="<?php echo base_urL('assets/plugins/slimScroll/jquery.slimscroll.min.js');?>"></script>
   <!-- FastClick -->
   <script src="<?php echo base_urL('assets/plugins/fastclick/fastclick.js');?>"></script>
@@ -176,8 +180,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
@@ -199,12 +201,29 @@
     });    
   </script>
 -->
-
+<!--modal bootsrrap-->
+ <script type="text/javascript">
+    $(document).ready(function(){
+        $('#tambah_user1').on('show.bs.modal', function (e) {
+            var rowid = $(e.relatedTarget).data('id');
+            //menggunakan fungsi ajax untuk pengambilan data
+            $.ajax({
+                type : 'post',
+                url : 'detail.php',
+                data :  'rowid='+ rowid,
+                success : function(data){
+                $('.fetched-data').html(data);//menampilkan data ke dalam modal
+                }
+            });
+         });
+    });
+  </script>
 
 <script>
 $(document).ready(function() {
     $('#example1').DataTable( {
-      
+
+    "lengthMenu": [[10, 25, 50, 300, -1], [10, 25, 50, 300, "All"]],
 dom: 'Bfrtip',
         buttons: [
             {
@@ -219,27 +238,71 @@ dom: 'Bfrtip',
                     columns: ':visible'
                 }
             },
-            {
-                extend: 'pdfHtml5',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 5 ]
-                }
-            },
-            'colvis'
+           'pageLength',
+           'colvis'
+      
+            
         ],
 
         
 
     } );
+
+
 } );
 </script>
-<script>
-$(".js-example-placeholder-single").select2({
-   
-    allowClear: true
-});
- </script>
 
+<script type="text/javascript">
+ function wajibAngka(evt) {
+ var charCode = (evt.which) ? evt.which : event.keyCode
+ if (charCode > 31 && (charCode < 48 || charCode > 57))
+ return false;
+ }
+</script>
+
+<script>
+        $(document).ready(function(){
+            $("#provinsi").change(function (){
+                var url = "<?php echo site_url('smas_controller/add_ajax_kab');?>/"+$(this).val();
+                $('#kabupaten').load(url);
+                return false;
+            })
+  
+   $("#kabupaten").change(function (){
+                var url = "<?php echo site_url('smas_controller/add_ajax_kec');?>/"+$(this).val();
+                $('#kecamatan').load(url);
+                return false;
+            })
+   
+   $("#kecamatan").change(function (){
+                var url = "<?php echo site_url('smas_controller/add_ajax_des');?>/"+$(this).val();
+                $('#desa').load(url);
+                return false;
+            })
+        });
+    </script>
+    
+<script>
+        $(document).ready(function(){
+            $("#provinsi_smp").change(function (){
+                var url = "<?php echo site_url('smas_controller/add_ajax_kab_smp');?>/"+$(this).val();
+                $('#kabupaten_smp').load(url);
+                return false;
+            })
+  
+   $("#kabupaten_smp").change(function (){
+                var url = "<?php echo site_url('smas_controller/add_ajax_kec_smp');?>/"+$(this).val();
+                $('#kecamatan_smp').load(url);
+                return false;
+            })
+   
+   $("#kecamatan_smp").change(function (){
+                var url = "<?php echo site_url('smas_controller/add_ajax_des_smp');?>/"+$(this).val();
+                $('#desa_smp').load(url);
+                return false;
+            })
+        });
+    </script>
 <script>
   $(function () {
   $("#datepicker1").datepicker({ 
@@ -275,6 +338,48 @@ $(".js-example-placeholder-single").select2({
   })
 });
 </script>
+
+<script>
+$(document).ready(function() { 
+ $("#provinsi").select2();
+});
+$(document).ready(function() { 
+ $("#kabupaten").select2();
+});
+$(document).ready(function() { 
+ $("#kecamatan").select2();
+});
+$(document).ready(function() { 
+ $("#desa").select2();
+});
+</script>
+
+<script>
+$(document).ready(function() { 
+ $("#provinsi_smp").select2();
+});
+$(document).ready(function() { 
+ $("#kabupaten_smp").select2();
+});
+$(document).ready(function() { 
+ $("#kecamatan_smp").select2();
+});
+$(document).ready(function() { 
+ $("#desa_smp").select2();
+});
+</script>
+
+<script>
+    $(document).ready(function(){
+      $(".preloader").fadeOut();
+    })
+    </script>
+
+
+
+
+
+
   </body>
   </html>
 

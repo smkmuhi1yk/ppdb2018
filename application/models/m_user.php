@@ -10,7 +10,7 @@ class M_user extends CI_Model {
      }
      $this->db->order_by('id_user','DESC');
      $this->db->join('tb_level as l','l.id_level = u.level');
-     $this->db->join('tb_jabatan as j','j.id_jabatan = u.jabatan');
+    // $this->db->join('tb_jabatan as j','j.id_jabatan = u.jabatan');
      return $this->db->get('tb_user as u');
    }
 

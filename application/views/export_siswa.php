@@ -1,6 +1,32 @@
 <?php  if($this->session->flashdata('alert')) : ?>
   <?php echo ' <div class="row"> <div class="col-ls-4"> <div class="social-auth-links text-center"> <div class="alert alert-info"> <b> <i>'.$this->session->flashdata('alert').'</i> </b> </div> </div> </div> </div>' ?>
 <?php endif;?>
+
+<style type="text/css">
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background-color: #fff;
+    }
+    .preloader .loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      font: 14px arial;
+    }
+    </style>
+<div class="preloader">
+      <div class="loading">
+        <img src="<?php echo base_urL('assets/image/pacman.gif');?>" width="80">
+        <p>Sabarrrrrr</p>
+      </div>
+    </div>
+
 <section class="content-header">
  
 
@@ -70,9 +96,17 @@
                  <th>Alamat</th>
                  <th>RT</th>
                  <th>RW</th>
+                 <!--
                  <th>Nama Desa</th>
                  <th>Kecamatan</th>
                  <th>Kota</th>
+                 -->
+                 <th>Provinsi</th>
+                 <th>Kabupaten</th>
+                 <th>Kecamatan</th>
+                 <th>Desa</th>
+                 
+
                  <th>Kode Pos</th>
                  <th>Tinggi Badan</th>
                  <th>Berat Badan</th>
@@ -84,10 +118,10 @@
                  <th>Asal SMP</th>
                  <th>NPSN SMP</th>
                  <th>Alamat SMP</th>
-                 <th>Desa SMP</th>
+                 <th>Provinsi SMP</th>
+                 <th>Kabupaten SMP</th>
                  <th>Kecamatan SMP</th>
-                 <th>Kab. SMP</th>
-                 <th>Prov. SMP</th>
+                 <th>Desa SMP</th>
                  <th>Keterangan</th>
                  <th>No. KPS/KMS</th>
                  <th>Jurusan</th>
@@ -98,7 +132,7 @@
                </thead>
                <tbody>
               <?php  $no = 1;
-                      foreach ($siswa as $u) {?>
+                      foreach ($joinsiswa as $u) {?>
                 <tr>
                   <td><?php echo $no++ ?></td>
                   <td><?php echo $u['nm_input'];?></td>
@@ -136,9 +170,16 @@
                   <td><?php echo $u['alamat'];?></td>
                  <td><?php echo $u['rt'];?></td>
                   <td><?php echo $u['rw'];?></td>
+                  <!--
                   <td><?php echo $u['nm_desa'];?></td>
                   <td><?php echo $u['kecamatan'];?></td>
                   <td><?php echo $u['kota'];?></td>
+                   -->
+                  <td><?php echo $u['nama_provinsi'];?></td>
+                  <td><?php echo $u['nama_kabupaten'];?></td>
+                  <td><?php echo $u['nama_kecamatan'];?></td>
+                  <td><?php echo $u['nama_desa'];?></td>
+
                   <td><?php echo $u['kode_pos'];?></td>
                   <td><?php echo $u['tinggi_badan'];?></td>
                   <td><?php echo $u['berat_badan'];?></td>
@@ -150,11 +191,19 @@
                   <td><?php echo $u['asal_smp'];?></td>
                   <td><?php echo $u['npsn_smp'];?></td>
                   <td><?php echo $u['alamat_smp'];?></td>
-                  <td><?php echo $u['desa_smp'];?></td>
                   
+                  
+
+                  <td><?php echo $u['nama_provinsi_smp'];?></td>
+                  <td><?php echo $u['nama_kabupaten_smp'];?></td>
+                  <td><?php echo $u['nama_kecamatan_smp'];?></td>
+                  <td><?php echo $u['nama_desa_smp'];?></td>
+                  <!--
+                  <td><?php echo $u['desa_smp'];?></td>
                  <td><?php echo $u['kecamatan_smp'];?></td>
                   <td><?php echo $u['kab_smp'];?></td>
                  <td><?php echo $u['provinsi_smp'];?></td>
+-->
                   <td><?php echo $u['keterangan'];?></td>
                   <td><?php echo $u['no_kps_kms'];?></td>
                   <td><?php echo $u['jurusan'];?></td>
@@ -204,9 +253,17 @@
                  <th>Alamat</th>
                  <th>RT</th>
                  <th>RW</th>
+                 <!--
                  <th>Nama Desa</th>
                  <th>Kecamatan</th>
                  <th>Kota</th>
+                 -->
+                 <th>Provinsi</th>
+                 <th>Kabupaten</th>
+                 <th>Kecamatan</th>
+                 <th>Desa</th>
+                 
+
                  <th>Kode Pos</th>
                  <th>Tinggi Badan</th>
                  <th>Berat Badan</th>
@@ -218,16 +275,16 @@
                  <th>Asal SMP</th>
                  <th>NPSN SMP</th>
                  <th>Alamat SMP</th>
-                 <th>Desa SMP</th>
+                 <th>Provinsi SMP</th>
+                 <th>Kabupaten SMP</th>
                  <th>Kecamatan SMP</th>
-                 <th>Kab. SMP</th>
-                 <th>Prov. SMP</th>
+                 <th>Desa SMP</th>
                  <th>Keterangan</th>
                  <th>No. KPS/KMS</th>
                  <th>Jurusan</th>
                  <th>NEM</th>
                  <th>C1/KK</th>
-                 <th>Biaya Lunas/Belum</th>     
+                 <th>Biaya Lunas/Belum</th>             
                </tr>
                </tfoot>
              </table>

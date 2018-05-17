@@ -1,5 +1,29 @@
 
   <!DOCTYPE html>
+  <style type="text/css">
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background-color: #fff;
+    }
+    .preloader .loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      font: 14px arial;
+    }
+    </style>
+<div class="preloader">
+      <div class="loading">
+        <img src="<?php echo base_urL('assets/image/pacman.gif');?>" width="80">
+        <p>Sabarrrrrr</p>
+      </div>
+    </div>
 <script>
        setTimeout(function(){
            location.reload();
@@ -52,6 +76,9 @@
 -->
     <!-- Control Sidebar -->
 
+
+
+
   <div class="container-fluid">
     <div class="row" style="margin:20px;">
         <div class="panel panel-danger">
@@ -59,9 +86,7 @@
               <h3 class="panel-title" style="text-align: center;">Progress PPDB</h3>
         </div>
         <div class="panel-body">
-        
-
-          <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-red"><i class="fa glyphicon glyphicon-user"></i></span>
 
@@ -74,7 +99,6 @@
       </div>
       <!-- /.info-box -->
     </div>
-
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-green"><i class="fa fab fa-android"></i></span>
@@ -88,7 +112,6 @@
       </div>
       <!-- /.info-box -->
     </div>
-
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-red"><i class="fa fas fa-laptop"></i></span>
@@ -102,7 +125,6 @@
       </div>
       <!-- /.info-box -->
     </div>
-
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-blue"><i class="fa fas fa-camera"></i></span>
@@ -243,7 +265,9 @@
 
 
         </div>
+
         </div>
+
   </div>
 </div>
   <!-- ./wrapper -->
@@ -399,6 +423,14 @@ $(".js-example-placeholder-single").select2({
   })
 });
 </script>
+
+
+<script>
+    $(document).ready(function(){
+      $(".preloader").fadeOut();
+    })
+    </script>
+
   </body>
   </html>
 

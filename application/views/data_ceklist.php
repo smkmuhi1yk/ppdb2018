@@ -41,7 +41,7 @@
   <ol class="breadcrumb">
     <li><a href="<?php echo base_url('index.php/smas_controller/home');?>"><i class="fa fa-dashboard"></i> Home</a></li>
     <li>Master Data</li>
-    <li class="active">Data Siswa</li>
+    <li class="active">Data Ceklist</li>
   </ol>
 
 </section>
@@ -59,56 +59,60 @@
              </div>
            </div>
            <!-- /.box-header -->
-           <div class="box-body">
+           <div class="box-body" style="overflow-x: auto;">
 
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped" >
                <thead>
                <tr>
                  <th>No</th>
-                 <th>Input Data</th>
-                 <th>No Daftar</th>
-                 <th>Tanggal Daftar</th>
-                 <th>NISN</th>
+                 <th>NO daftar</th>
                  <th>Nama Siswa</th>
-                 <th>JK</th>
                  <th>Jurusan</th>
+                 <th>SKHUN Asli</th>
+                 <th>FC SKHUN</th>
+                 <th>FC Ijazah</th>
+                 <th>FC Akta</th>
+                 <th>FC C1</th>
+                 <th>Photo</th>
+                 <th>SKL Asli</th>
+                 <th>FC KMS KPS</th>
+                 <th>Data Pribadi</th>
+                 <th>FC Raport</th>
+                 <th>FC Sertifikat</th>
                  <th>Keterangan</th>
-                 <th>NEM</th>
-                 <th>Biaya</th>
-                
-              
-                 <th>Action</th>
+             <th>Action</th>
                </tr>
                </thead>
                <tbody>
               <?php  $no = 1;
-                      foreach ($siswa as $u) {?>
+                      foreach ($ceklist as $u) {?>
                 <tr>
                   <td><?php echo $no++ ?></td>
-                  <td><?php echo $u['nm_input'];?></td>
-                 <td>
-                  
-                    <?php echo $u['no_daftar'];?>
+                                 
+                   <td> <?php echo $u['no_daftar'];?>
                 </td>
-                  <td><?php echo $u['tgl_daftar'];?></td>
-                  <td><?php echo $u['nisn'];?></td>
-                  <td><?php echo $u['nm_siswa'];?></td>
-                  <td><?php echo $u['jk_siswa'];?></td>
+                  <td><?php echo $u['nama_cek'];?></td>
                   <td><?php echo $u['jurusan'];?></td>
+                  <td><?php echo $u['skhun_asli'];?></td>
+                  <td><?php echo $u['fc_skhun'];?></td>
+                  <td><?php echo $u['fc_ijazah'];?></td>
+                  <td><?php echo $u['fc_akta'];?></td>
+                  <td><?php echo $u['fc_c1'];?></td>
+                  <td><?php echo $u['photo'];?></td>
+                  <td><?php echo $u['skl_asli'];?></td>
+                  <td><?php echo $u['fc_kms_kps'];?></td>
+                  <td><?php echo $u['data_pribadi'];?></td>
+                  <td><?php echo $u['fc_raport'];?></td>
+                  <td><?php echo $u['fc_sertifikat'];?></td>
                   <td><?php echo $u['keterangan'];?></td>
-                  <td><?php echo $u['nem'];?></td>
-                  <td><?php echo $u['biaya'];?></td>
-                  
-                  
+             
                   <td>
 
                    
-                    <a href="<?php echo base_urL('index.php/smas_controller/addcek/').$u['no_daftar'];?>"><span class="label label-primary" aria-hidden="true"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ceklist</span></a>
-                      <br>
                  
-                       <a href="<?php echo base_urL('index.php/smas_controller/editsiswa/').$u['no_daftar'];?>"><span class="label label-primary" aria-hidden="true"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</span></a>
+                       <a href="<?php echo base_urL('index.php/smas_controller/editceklist/').$u['id_ceklist'];?>"><span class="label label-primary" aria-hidden="true"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</span></a>
                     <br>
-                       <a onclick="javascript: return confirm('Are you sure you want to delete this data ?')" href="<?php echo base_urL('index.php/smas_controller/delsiswa/').$u['no_daftar'];?>"><span class="label label-danger" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</span></a>
+                       <a onclick="javascript: return confirm('Are you sure you want to delete this data ?')" href="<?php echo base_urL('index.php/smas_controller/delceklist/').$u['id_ceklist'];?>"><span class="label label-danger" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</span></a>
 
                     
                   </td>
@@ -118,16 +122,21 @@
                <tfoot>
                <tr>
                  <th>No</th>
-                 <th>Input Data</th>
-                 <th>No Daftar</th>
-                 <th>Tanggal Daftar</th>
-                 <th>NISN</th>
+                 <th>NO daftar</th>
                  <th>Nama Siswa</th>
-                 <th>JK</th>
                  <th>Jurusan</th>
+                 <th>SKHUN Asli</th>
+                 <th>FC SKHUN</th>
+                 <th>FC Ijazah</th>
+                 <th>FC Akta</th>
+                 <th>FC C1</th>
+                 <th>Photo</th>
+                 <th>SKL Asli</th>
+                 <th>FC KMS KPS</th>
+                 <th>Data Pribadi</th>
+                 <th>FC Raport</th>
+                 <th>FC Sertifikat</th>
                  <th>Keterangan</th>
-                 <th>NEM</th>
-                 <th>Biaya</th>
            
                  <th>Action</th>
                </tr>
@@ -143,9 +152,9 @@
      <!-- /.row -->
    </section>
 
- 
  <div class="modal fade" id="tambah_user" role="dialog">
         <div class="modal-dialog modal-md">
+
          
               <!-- /.box-body
 

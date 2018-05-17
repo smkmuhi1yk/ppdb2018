@@ -51,7 +51,9 @@
             -->
           <li><a href="<?php echo base_urL('smas_controller/siswa');?>"><i class="fa fa-circle-o"></i> Input Siswa Baru</a></li>
           <li><a href="<?php echo base_urL('smas_controller/dt_siswa');?>"><i class="fa fa-circle-o"></i> Data Siswa Baru</a></li>
+           <li><a href="<?php echo base_urL('smas_controller/dt_ceklist');?>"><i class="fa fa-circle-o"></i> Data Ceklist</a></li>
             <li><a href="<?php echo base_urL('smas_controller/export_siswa');?>"><i class="fa fa-circle-o"></i> Export</a></li>
+
            <!--
              <li><a href="<?php echo base_urL('Filter_kelas/');?>"><i class="fa fa-circle-o"></i> Filter</a></li>
             <li><a href="<?php echo base_urL('smas_controller/surat/2');?>"><i class="fa fa-circle-o"></i> Surat Keluar</a></li>
@@ -75,8 +77,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-      <!--
-          <li><a href="<?php echo base_urL('index.php/smas_controller/tahun');?>"><i class="fa fa-circle-o"></i> Tahun Ajaran</a></li>
+     
+          <li><a href="<?php echo base_urL('index.php/smas_controller/daftar_sekolah');?>"><i class="fa fa-circle-o"></i> Daftar Sekolah</a></li>
+           <!--
           <li><a href="<?php echo base_urL('index.php/smas_controller/jabatan');?>"><i class="fa fa-circle-o"></i> Jabatan</a></li>
           <li><a href="<?php echo base_urL('index.php/smas_controller/kategori');?>"><i class="fa fa-circle-o"></i> Kategori</a></li>
           <li><a href="<?php echo base_urL('index.php/smas_controller/kode_disposisi');?>"><i class="fa fa-circle-o"></i> Kode Agenda</a></li>
